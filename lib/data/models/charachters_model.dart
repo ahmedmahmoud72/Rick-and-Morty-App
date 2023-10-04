@@ -1,10 +1,10 @@
-class Character {
+class CharactersModel {
   Info? info;
   List<Results>? results;
 
-  Character({this.info, this.results});
+  CharactersModel({this.info, this.results});
 
-  Character.fromJson(Map<String, dynamic> json) {
+  CharactersModel.fromJson(Map<String, dynamic> json) {
     info = json['info'] != null ? Info.fromJson(json['info']) : null;
     if (json['results'] != null) {
       results = <Results>[];
