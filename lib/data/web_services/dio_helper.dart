@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:rick_and_morty_app/presentation/constants/strings.dart';
+
+import '../../presentation/constants/strings.dart';
 
 class DioHelper {
   static Dio? dio;
@@ -18,6 +19,9 @@ class DioHelper {
     String? token,
     Map<String, dynamic>? query,
   }) async {
+    dio!.options.headers = {
+      'Authorization': token ?? '',
+    };
     return await dio!.get(
       url,
       queryParameters: query,

@@ -3,15 +3,14 @@ import 'package:rick_and_morty_app/data/web_services/dio_helper.dart';
 import 'package:rick_and_morty_app/presentation/constants/strings.dart';
 
 class CharactersRepository {
-  CharactersModel? characterModel;
+  CharactersModel? charactersModel;
 
-  Future<List<CharactersModel>> getAllCharacters() async {
+  Future<List<Results>> getAllCharacters() async {
     await DioHelper.getData(url: AppEndPoints.character).then(
       (value) {
-        characterModel = CharactersModel.fromJson(value.data);
-        return characterModel;
+        charactersModel = CharactersModel.fromJson(value.data);
       },
     );
-    return [];
+    return charactersModel!.results!;
   }
 }
