@@ -4,8 +4,15 @@ abstract class CharactersState {}
 
 class CharactersInitial extends CharactersState {}
 
+
 class CharactersLoaded extends CharactersState {
-  final List<CharactersModel> characters;
+  final List<Results> characters;
 
   CharactersLoaded(this.characters);
+}
+
+class CharactersError extends CharactersState {
+  final String error;
+
+  CharactersError(this.error);
 }
