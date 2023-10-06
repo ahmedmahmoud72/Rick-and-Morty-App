@@ -10,33 +10,35 @@ class CharacterItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: GridTile(
-        footer: Container(
-          width: double.infinity,
-          height: 40,
-          color: Colors.black54,
-          child: Text(
-            '${characters.name}',
-                textAlign: TextAlign.center,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-              color: Colors.white,
-                  fontWeight: FontWeight.bold,fontSize: 16.0,height: 2
-          ),
-          ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(
+          10.0
         ),
-        child:  characters.image!.isNotEmpty
-              ? ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: FadeInImage.assetNetwork(
-                      height: double.infinity,
-                      width: double.infinity,
-                      fit: BoxFit.cover,
-                      placeholder: 'assets/images/loading.gif',
-                      image: characters.image!),
-                )
-              : Image.network(characters.image!),
+        child: GridTile(
+          footer: Container(
+            width: double.infinity,
+            height: 40,
+            color: Colors.black54,
+            child: Text(
+              '${characters.name}',
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                color: Colors.white,
+                    fontWeight: FontWeight.bold,fontSize: 16.0,height: 2
+            ),
+            ),
+          ),
+          child:  characters.image!.isNotEmpty
+                ? FadeInImage.assetNetwork(
+                    height: double.infinity,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    placeholder: 'assets/images/loading.gif',
+                    image: characters.image!)
+                : Image.network(characters.image!),
+        ),
       ),
     );
   }
