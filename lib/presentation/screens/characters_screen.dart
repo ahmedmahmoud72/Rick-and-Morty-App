@@ -13,12 +13,80 @@ class CharactersScreen extends StatefulWidget {
 }
 
 class _CharactersScreenState extends State<CharactersScreen> {
-   List<Results> allCharacters = [];
+  List<Results> allCharacters = [];
+  List<Results> searchedForCharacters = [];
+  bool _isSearching = false;
+  final _searchController = TextEditingController();
+
+  Widget _buildSearchComponent() {
+    return TextField(
+      controller: _searchController,
+      decoration: const InputDecoration(
+        hintText: 'Search Character ...',
+        border: InputBorder.none,
+      ),
+      onChanged: (searchedCharacter) {
+        _addSearchedItemToSearchedList(searchedCharacter);
+      },
+    );
+  }
+
+  void _addSearchedItemToSearchedList(String searchedCharacter) {
+    searchedForCharacters = allCharacters
+        .where((character) =>
+            character.name!.toLowerCase().startsWith(searchedCharacter))
+        .toList();
+    setState(() {});
+  }
+
+  List<Widget> _buildAppBarActions() {
+    if (_isSearching) {
+      return [
+        IconButton(
+          onPressed: () {
+            _clearSearch();
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.clear),
+        ),
+      ];
+    } else {
+      return [
+        IconButton(
+          onPressed: () {
+            _startSearch();
+          },
+          icon: const Icon(Icons.search),
+        ),
+      ];
+    }
+  }
+
+  void _startSearch() {
+    setState(() {
+      ModalRoute.of(context)!
+          .addLocalHistoryEntry(LocalHistoryEntry(onRemove: _stopSearch));
+      _isSearching = true;
+    });
+  }
+
+  void _stopSearch() {
+    _clearSearch();
+    setState(() {
+      _isSearching = false;
+    });
+  }
+
+  void _clearSearch() {
+    setState(() {
+      _searchController.clear();
+    });
+  }
 
   @override
   void initState() {
     super.initState();
-     DioHelper.init();
+    DioHelper.init();
     BlocProvider.of<CharactersCubit>(context).getAllCharacters();
   }
 
@@ -63,16 +131,28 @@ class _CharactersScreenState extends State<CharactersScreen> {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         padding: EdgeInsets.zero,
-        itemCount: allCharacters.length,
-        itemBuilder: (BuildContext context, int index) =>
-            CharacterItem(characters: allCharacters[index]),
+        itemCount: _searchController.text.isEmpty
+            ? allCharacters.length
+            : searchedForCharacters.length,
+        itemBuilder: (BuildContext context, int index) => CharacterItem(
+            characters: _searchController.text.isEmpty
+                ? allCharacters[index]
+                : searchedForCharacters[index]),
       ),
     );
+  }
+
+  Widget _buildAppBarTitle() {
+    return const Text('Characters');
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: _isSearching ? _buildSearchComponent() : _buildAppBarTitle(),
+        actions: _buildAppBarActions(),
+      ),
       body: buildBlocWidget(),
     );
   }
