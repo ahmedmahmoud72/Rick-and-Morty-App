@@ -25,6 +25,9 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.poppinsTextTheme(
           Theme.of(context).textTheme,
         ),
+        appBarTheme: const AppBarTheme(
+          color: Colors.lightBlue,
+        )
       ),
       onGenerateRoute: appRouter.generateRoute,
     );
