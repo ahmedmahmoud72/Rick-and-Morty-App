@@ -4,5 +4,7 @@ class AppEndPoints {
 }
 
 class AppRoutes {
-  static const String charactersScreen = '/';
+  static const String splashScreen = '/';
+  static const String charactersScreen = 'characters';
+  static const String charactersDetailsScreen = 'character_details';
 }

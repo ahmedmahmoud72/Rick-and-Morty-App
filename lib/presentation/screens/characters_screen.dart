@@ -21,6 +21,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
   Widget _buildSearchComponent() {
     return TextField(
       controller: _searchController,
+      cursorColor: Colors.black,
       decoration: const InputDecoration(
         hintText: 'Search Character ...',
         border: InputBorder.none,
@@ -47,7 +48,10 @@ class _CharactersScreenState extends State<CharactersScreen> {
             _clearSearch();
             Navigator.pop(context);
           },
-          icon: const Icon(Icons.clear),
+          icon: const Icon(
+            Icons.clear,
+            color: Colors.black,
+          ),
         ),
       ];
     } else {
@@ -56,7 +60,10 @@ class _CharactersScreenState extends State<CharactersScreen> {
           onPressed: () {
             _startSearch();
           },
-          icon: const Icon(Icons.search),
+          icon: const Icon(
+            Icons.search,
+            color: Colors.black,
+          ),
         ),
       ];
     }
@@ -125,8 +132,8 @@ class _CharactersScreenState extends State<CharactersScreen> {
       child: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          crossAxisSpacing: 15,
-          mainAxisSpacing: 15,
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
         ),
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
@@ -135,7 +142,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
             ? allCharacters.length
             : searchedForCharacters.length,
         itemBuilder: (BuildContext context, int index) => CharacterItem(
-            characters: _searchController.text.isEmpty
+            character: _searchController.text.isEmpty
                 ? allCharacters[index]
                 : searchedForCharacters[index]),
       ),
@@ -143,13 +150,19 @@ class _CharactersScreenState extends State<CharactersScreen> {
   }
 
   Widget _buildAppBarTitle() {
-    return const Text('Characters');
+    return const Text(
+      'Characters',
+      style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: const IconThemeData(color: Colors.black),
         title: _isSearching ? _buildSearchComponent() : _buildAppBarTitle(),
         actions: _buildAppBarActions(),
       ),
