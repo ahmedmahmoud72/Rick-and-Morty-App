@@ -1,16 +1,41 @@
-# rick_and_morty_app
+# :blue_book: Overview
 
-A new Flutter project.
+![Rick and Morty](https://user-images.githubusercontent.com/38296077/126981491-e13d63ec-932d-4640-a9c2-927259ce48a7.jpg)
 
-## Getting Started
+- Developed with Flutter and BLoC pattern to showcase information about the American adult animated science fiction sitcom :clapper: Rick and Morty.
+- Implemented several engaging UI widgets.
 
-This project is a starting point for a Flutter application.
+# :pushpin: Data Source
 
-A few resources to get you started if this is your first Flutter project:
+- Utilized the following free API: [Rick and Morty API Documentation](https://rickandmortyapi.com/documentation/)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+# :iphone: Screens
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## :smiley: Splash Screen
+
+![Splash Screen](https://github.com/ahmedmahmoud72/Rick-and-Morty-App/assets/88392155/1b57ea00-980c-4df2-afaf-ebca459659a7)
+
+## :house: Home Screen
+
+- Employed Dio for data retrieval.
+
+![Home Screen](https://github.com/ahmedmahmoud72/Rick-and-Morty-App/assets/88392155/fca9edcb-f154-49be-9284-8e1463bd1ddf)
+
+- Implemented character name filtering.
+
+![Search](https://github.com/ahmedmahmoud72/Rick-and-Morty-App/assets/88392155/5199d3bd-70ca-41b7-b758-344f9d4c0d74)
+
+## 🚫 Offline Screen
+
+- Monitored internet connectivity.
+
+![Offline](https://github.com/ahmedmahmoud72/Rick-and-Morty-App/assets/88392155/bcfc25ee-34d7-47fc-a0f3-fea0aa6118af)
+
+## :man_astronaut: Details Screen
+
+- Incorporated Hero animations and Draggable Scrollable Sheets.
+
+![Details Screen](https://user-images.githubusercontent.com/38296077/126984994-64da4f86-ea59-4df7-98dc-14df0822ae41.jpeg)
+
+## 🎥 Demo
+- Watch a demo of this project [here](https://drive.google.com/file/d/1QGS6rvRr8SIuXcBPU3QnT8BtCv3FalEA/view?usp=sharing).
