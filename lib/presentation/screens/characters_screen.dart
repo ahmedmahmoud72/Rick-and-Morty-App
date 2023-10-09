@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_offline/flutter_offline.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rick_and_morty_app/data/models/charachters_model.dart';
 import 'package:rick_and_morty_app/data/web_services/dio_helper.dart';
 import '../../business_logic/cubit/characters_cubit.dart';
@@ -112,7 +114,9 @@ class _CharactersScreenState extends State<CharactersScreen> {
 
   Widget showLoadingIndicator() {
     return const Center(
-      child: CircularProgressIndicator(),
+      child: CircularProgressIndicator(
+        color: Colors.black,
+      ),
     );
   }
 
@@ -150,9 +154,12 @@ class _CharactersScreenState extends State<CharactersScreen> {
   }
 
   Widget _buildAppBarTitle() {
-    return const Text(
+    return Text(
       'Characters',
-      style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
+      style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+            color: Colors.black,
+            fontWeight: FontWeight.w600,
+          ),
     );
   }
 
@@ -166,7 +173,27 @@ class _CharactersScreenState extends State<CharactersScreen> {
         title: _isSearching ? _buildSearchComponent() : _buildAppBarTitle(),
         actions: _buildAppBarActions(),
       ),
-      body: buildBlocWidget(),
+      body: OfflineBuilder(
+        connectivityBuilder: (
+          BuildContext context,
+          ConnectivityResult connectivity,
+          Widget child,
+        ) {
+          final bool connected = connectivity != ConnectivityResult.none;
+          if (connected) {
+            return buildBlocWidget();
+          } else {
+            return Center(
+              child: SvgPicture.asset(
+                'assets/images/no_internet.svg',
+                height: 400,
+                fit: BoxFit.cover,
+              ),
+            );
+          }
+        },
+        child: showLoadingIndicator(),
+      ),
     );
   }
 }

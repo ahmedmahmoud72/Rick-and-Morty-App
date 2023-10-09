@@ -46,11 +46,11 @@ class CharacterItem extends StatelessWidget {
                     tag: character.id!,
                     child: Center(
                       child: Padding(
-                        padding: const EdgeInsets.only(top: 7.0),
+                        padding: const EdgeInsets.only(top: 10.0),
                         child: Text(
                           '${character.name}',
                           textAlign: TextAlign.center,
-                          maxLines: 2,
+                          maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style:
                               Theme.of(context).textTheme.titleSmall?.copyWith(
