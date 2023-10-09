@@ -19,7 +19,7 @@
 
 - Employed Dio for data retrieval.
 
-<img src="https://github.com/ahmedmahmoud72/Rick-and-Morty-App/assets/88392155/fca9edcb-f154-49be-9284-8e1463bd1ddf" width="300">
+<img src="https://github.com/ahmedmahmoud72/Rick-and-Morty-App/assets/88392155/fca9edcb-f154-49be-9284-8e1463bd1ddf" width="200">
 
 - Implemented character name filtering.
 
@@ -35,7 +35,7 @@
 
 - Incorporated Hero animations and Draggable Scrollable Sheets.
 
-<img src="https://user-images.githubusercontent.com/38296077/126984994-64da4f86-ea59-4df7-98dc-14df0822ae41.jpeg" width="300">
+<img src="https://github.com/ahmedmahmoud72/Rick-and-Morty-App/assets/88392155/c89501c6-4224-4199-ab25-d69d7be2c27b" width="300">
 
 ## 🎥 Demo
 
